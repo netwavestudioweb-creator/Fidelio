@@ -1,0 +1,6 @@
+# Robots.txt for Fidelio WhatsApp Automation
+User-agent: *
+Allow: /
+
+# Sitemap Index
+Sitemap: https://fidelio.bj/sitemap.xml

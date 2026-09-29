@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <linearGradient id="aave-ghost-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9B51E0"/>
+      <stop offset="100%" stop-color="#2F80ED"/>
+    </linearGradient>
+  </defs>
+  <path d="M50 10 C30 10 15 25 15 48 C15 65 15 85 25 85 C30 85 35 78 40 78 C45 78 48 85 50 85 C52 85 55 78 60 78 C65 78 70 85 75 85 C85 85 85 65 85 48 C85 25 70 10 50 10 Z" fill="url(#aave-ghost-grad)"/>
+  <circle cx="38" cy="40" r="5" fill="#FFFFFF"/>
+  <circle cx="62" cy="40" r="5" fill="#FFFFFF"/>
+</svg>

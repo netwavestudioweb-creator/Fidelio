@@ -1,0 +1,17 @@
+{
+  "name": "Fidelio — Automation WhatsApp 24/7",
+  "short_name": "Fidelio",
+  "description": "Automation WhatsApp & Fidélisation Client 24/7 à Cotonou, Bénin",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0B0A1C",
+  "theme_color": "#2E1065",
+  "icons": [
+    {
+      "src": "/fidelio.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
