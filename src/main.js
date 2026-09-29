@@ -479,7 +479,11 @@ function renderApp() {
           <img src="/fidelio.svg" alt="Fidelio Logo" />
           <span>fidelio</span>
         </a>
-        <ul class="nav-links">
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle Navigation">
+          <span class="icon-box icon-menu">${icons.menu}</span>
+          <span class="icon-box icon-close" style="display:none;">${icons.x}</span>
+        </button>
+        <ul class="nav-links" id="nav-links">
           <li><a href="#problem">Le Problème</a></li>
           <li><a href="#cockpit">Cockpit Web</a></li>
           <li><a href="#infrastructure">Infrastructure</a></li>
@@ -1449,6 +1453,31 @@ function updateSliderProgress(slider) {
 }
 
 function attachEventListeners() {
+  const navToggle = document.getElementById('nav-toggle');
+  const navLinks = document.getElementById('nav-links');
+  const iconMenu = navToggle?.querySelector('.icon-menu');
+  const iconClose = navToggle?.querySelector('.icon-close');
+
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('active');
+      if (iconMenu && iconClose) {
+        iconMenu.style.display = isOpen ? 'none' : 'inline-flex';
+        iconClose.style.display = isOpen ? 'inline-flex' : 'none';
+      }
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        if (iconMenu && iconClose) {
+          iconMenu.style.display = 'inline-flex';
+          iconClose.style.display = 'none';
+        }
+      });
+    });
+  }
+
   window.addEventListener('scroll', () => {
     const navbar = document.getElementById('navbar');
     if (navbar) {

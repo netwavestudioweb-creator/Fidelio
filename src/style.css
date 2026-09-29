@@ -257,6 +257,23 @@ h1, h2, h3, h4, h5, h6, .font-heading {
   color: var(--gold-primary);
 }
 
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--violet-dark);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  transition: var(--transition-fast);
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-toggle:hover {
+  background: rgba(76, 29, 149, 0.08);
+}
+
 /* Hero Section */
 .hero-section {
   position: relative;
@@ -2046,13 +2063,394 @@ h1, h2, h3, h4, h5, h6, .font-heading {
   max-width: 420px;
 }
 
-@media (max-width: 1024px) {
-  .hero-title { font-size: 40px; }
-  .phones-showcase { flex-direction: column; }
-  .cards-grid-3, .pricing-grid, .pricing-grid-4, .addons-grid, .trust-grid, .problem-solution-card, .build-grid, .yield-summary-cards { grid-template-columns: 1fr; }
-  .pricing-card.hero-pro { transform: none; }
-  .pricing-card.hero-pro:hover { transform: translateY(-4px); }
-  .order-summary-bar, .downsell-box { flex-direction: column; text-align: center; }
-  .iphone16-container.iphone-left, .iphone16-container.iphone-right { transform: none; }
-  .iphone16-pro-max-large { width: 100%; max-width: 380px; }
+/* ==========================================================================
+   UNIVERSAL RESPONSIVE DESIGN SYSTEM & BREAKPOINTS ARCHITECTURE
+   Adaptation complète pour tous les types d'écrans du monde (Ultrawide, Desktop,
+   Laptops, Tablettes paysage/portrait, Smartphones Pro Max, Smartphones compacts, Pliables)
+   ========================================================================== */
+
+/* 1. ÉCRANS ULTRA-LARGE / ÉCRANS 2K & 4K (min-width: 1441px) */
+@media (min-width: 1441px) {
+  .container {
+    max-width: 1340px;
+  }
+
+  .hero-title {
+    font-size: 60px;
+  }
+
+  .pro-title {
+    font-size: 54px;
+  }
 }
+
+/* 2. ÉCRANS ORDINATEURS PORTABLES & DESKTOPS STANDARD (1025px - 1440px) */
+@media (max-width: 1440px) {
+  .container {
+    max-width: 1180px;
+  }
+}
+
+/* 3. TABLETTES EN MODE PAYSAGE & PETITS ORDINATEURS (835px - 1024px) */
+@media (max-width: 1024px) {
+  .hero-title {
+    font-size: clamp(38px, 4.5vw, 48px);
+  }
+
+  .hero-subtitle {
+    font-size: 17px;
+  }
+
+  .pricing-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .cards-grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .argumentaire-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .iphone-fan-stage {
+    perspective: 1200px;
+    padding: 20px 0 40px;
+  }
+
+  .fan-left {
+    transform: translateX(30px) rotate(-10deg) scale(0.88);
+  }
+
+  .fan-center {
+    transform: translateY(-15px) scale(0.98);
+  }
+
+  .fan-right {
+    transform: translateX(-30px) rotate(10deg) scale(0.88);
+  }
+
+  .browser-dashboard-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .browser-sidebar {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 12px;
+  }
+
+  .browser-sidebar-menu {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 10px;
+    padding-bottom: 4px;
+  }
+
+  .browser-sidebar-item {
+    white-space: nowrap;
+  }
+
+  .addons-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 4. TABLETTES PORTRAIT & PHABLETS GRAND FORMAT (641px - 834px) */
+@media (max-width: 834px) {
+  .navbar {
+    padding: 12px 0;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(14, 11, 38, 0.98);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-gold);
+    padding: 24px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    z-index: 200;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links a {
+    color: #F8FAFC;
+    font-size: 17px;
+    width: 100%;
+    padding: 8px 0;
+  }
+
+  .nav-actions {
+    display: none;
+  }
+
+  .hero-section {
+    padding: 40px 0 70px;
+  }
+
+  .hero-title {
+    font-size: clamp(32px, 6vw, 42px);
+    letter-spacing: -0.8px;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .hero-cta-group .btn {
+    width: 100%;
+  }
+
+  /* Vertical Fan Stack for Mobile & Tablets */
+  .iphone-fan-stage {
+    flex-direction: column;
+    align-items: center;
+    gap: 36px;
+    perspective: none;
+    padding: 10px 0 30px;
+  }
+
+  .fan-left, .fan-center, .fan-right {
+    transform: none !important;
+    margin: 0 !important;
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .iphone16-pro-frame {
+    width: 100%;
+    max-width: 320px;
+    height: 600px;
+    margin: 0 auto;
+  }
+
+  .cards-grid-3, .pricing-grid-4, .addons-grid, .trust-grid, .build-grid, .stats-grid, .yield-summary-cards {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .pro-section {
+    padding: 70px 0;
+  }
+
+  .pro-title {
+    font-size: clamp(30px, 5vw, 40px);
+  }
+
+  .browser-metrics-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .order-summary-bar {
+    flex-direction: column;
+    text-align: center;
+    padding: 24px 20px;
+    gap: 16px;
+  }
+
+  .order-summary-bar div {
+    text-align: center !important;
+  }
+
+  .downsell-box {
+    flex-direction: column;
+    text-align: center;
+    padding: 24px 20px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+  }
+
+  .footer-content div {
+    text-align: center !important;
+  }
+}
+
+/* 5. SMARTPHONES TAILLE STANDARD (iPhone 13/14/15/16, Samsung Galaxy, Pixel) (481px - 640px) */
+@media (max-width: 640px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .tag-pill {
+    font-size: 11px;
+    padding: 5px 14px;
+  }
+
+  .hero-title {
+    font-size: 28px;
+    line-height: 1.2;
+  }
+
+  .hero-subtitle {
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+
+  .iphone16-pro-frame {
+    max-width: 295px;
+    height: 560px;
+    border-radius: 46px;
+    padding: 8px;
+  }
+
+  .iphone16-inner-screen {
+    border-radius: 38px;
+  }
+
+  .ios-status-bar {
+    padding: 10px 14px 4px;
+    font-size: 10px;
+  }
+
+  .wa-chat-canvas {
+    padding: 10px 8px 18px;
+  }
+
+  .chat-bubble {
+    max-width: 92%;
+    font-size: 10.5px;
+    padding: 8px 10px;
+  }
+
+  .stat-number {
+    font-size: 40px;
+  }
+
+  .simulator-panel {
+    padding: 20px 16px;
+  }
+
+  .preset-chips {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .preset-chip {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .summary-val {
+    font-size: 28px;
+  }
+
+  .pricing-header-box h2 {
+    font-size: 28px !important;
+  }
+
+  .billing-toggle-wrapper {
+    flex-direction: column;
+    width: 100%;
+    padding: 6px;
+  }
+
+  .billing-toggle-btn {
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+    padding: 10px 14px;
+  }
+
+  .cta-final-title {
+    font-size: 28px;
+  }
+}
+
+/* 6. COMPACT SMARTPHONES & PETITS ÉCRANS MOBILES (320px - 480px) */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 14px;
+  }
+
+  .nav-brand span {
+    font-size: 22px;
+  }
+
+  .nav-brand img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .hero-title {
+    font-size: 25px;
+  }
+
+  .iphone16-pro-frame {
+    max-width: 275px;
+    height: 520px;
+    border-radius: 40px;
+  }
+
+  .dynamic-island-pro {
+    width: 76px;
+    height: 20px;
+    top: 8px;
+  }
+
+  .argumentaire-card {
+    padding: 22px 18px;
+  }
+
+  .arg-title {
+    font-size: 18px;
+  }
+
+  .pricing-card {
+    padding: 24px 18px;
+  }
+
+  .addon-card {
+    padding: 16px 14px;
+  }
+
+  .summary-total-price {
+    font-size: 26px;
+  }
+
+  .downsell-title {
+    font-size: 17px;
+  }
+}
+
+/* 7. ÉCRANS ULTRA-COMPACTS ET MOBILES PLIABLES FERMÉS (< 320px) */
+@media (max-width: 320px) {
+  .hero-title {
+    font-size: 22px;
+  }
+
+  .btn {
+    font-size: 13px;
+    padding: 12px 18px;
+  }
+
+  .iphone16-pro-frame {
+    max-width: 250px;
+    height: 480px;
+  }
+}
+
