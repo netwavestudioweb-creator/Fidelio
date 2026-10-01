@@ -375,6 +375,55 @@ h1, h2, h3, h4, h5, h6, .font-heading {
   box-shadow: 0 0 20px rgba(245, 158, 11, 0.15);
 }
 
+/* SÉLECTEUR TACTILE MULTI-ÉCRANS POUR MOBILES & TABLETTES */
+.fan-device-tabs {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 0 auto 35px;
+  padding: 6px;
+  background: #FFFFFF;
+  border: 1.5px solid var(--border-violet);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-sm);
+  max-width: 580px;
+  position: relative;
+  z-index: 10;
+}
+
+.fan-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 700;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: var(--font-body);
+}
+
+.fan-tab-btn:hover {
+  color: var(--violet-dark);
+  background: rgba(76, 29, 149, 0.05);
+}
+
+.fan-tab-btn.active {
+  background: linear-gradient(135deg, #2E1065 0%, #4C1D95 100%);
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(46, 16, 101, 0.25);
+}
+
+.fan-tab-btn.active .icon-box {
+  color: var(--gold-bright) !important;
+}
+
 /* 3 iPhone Fan Stage */
 .iphone-fan-stage {
   display: flex;
@@ -923,24 +972,6 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 
 .bullet-danger { color: #EF4444; }
 .bullet-success { color: #16A34A; }
-
-/* Responsive adjustments for iPhone Fan Stage */
-@media (max-width: 1024px) {
-  .iphone-fan-stage {
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
-    perspective: none;
-  }
-  
-  .fan-left, .fan-center, .fan-right {
-    transform: none !important;
-  }
-
-  .argumentaire-grid {
-    grid-template-columns: 1fr;
-  }
-}
 
 /* Stats Section */
 .stats-section {
@@ -2084,21 +2115,136 @@ h1, h2, h3, h4, h5, h6, .font-heading {
   }
 }
 
-/* 2. ÉCRANS ORDINATEURS PORTABLES & DESKTOPS STANDARD (1025px - 1440px) */
-@media (max-width: 1440px) {
+/* ==========================================================================
+   UNIVERSAL RESPONSIVE ARCHITECTURE BY DEVICE CATEGORIES
+   1. PC & Desktops (Ultrawide 4K, PC Bureau Standard, Laptops 1366/1280)
+   2. Tablettes (Paysage 1024-1080px, Portrait 768-850px, Écrans pliables dépliés)
+   3. Portables & Smartphones (Phablets 480-640px, Standards 376-480px, Compacts SE 340-375px, Pliables fermés <=340px)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   A. GRANDS PC & ÉCRANS 4K / ULTRAWIDE (min-width: 1600px)
+   -------------------------------------------------------------------------- */
+@media (min-width: 1600px) {
   .container {
-    max-width: 1180px;
+    max-width: 1400px;
+    padding: 0 40px;
+  }
+
+  .hero-title {
+    font-size: 62px;
+    letter-spacing: -1.8px;
+  }
+
+  .iphone-fan-stage {
+    perspective: 1800px;
+    padding: 40px 0 80px;
+  }
+
+  .fan-left {
+    transform: translateX(80px) rotate(-15deg) scale(0.94);
+  }
+
+  .fan-center {
+    transform: translateY(-30px) scale(1.06);
+  }
+
+  .fan-right {
+    transform: translateX(-80px) rotate(15deg) scale(0.94);
+  }
+
+  .pricing-grid-4 {
+    gap: 28px;
+  }
+
+  .pricing-card {
+    padding: 42px 30px 36px;
   }
 }
 
-/* 3. TABLETTES EN MODE PAYSAGE & PETITS ORDINATEURS (835px - 1024px) */
-@media (max-width: 1024px) {
+/* --------------------------------------------------------------------------
+   B. PC DE BUREAU STANDARD (1201px - 1599px)
+   -------------------------------------------------------------------------- */
+@media (min-width: 1201px) and (max-width: 1599px) {
+  .container {
+    max-width: 1200px;
+    padding: 0 28px;
+  }
+
   .hero-title {
-    font-size: clamp(38px, 4.5vw, 48px);
+    font-size: 52px;
+  }
+
+  .pricing-grid-4 {
+    gap: 20px;
+  }
+
+  .pricing-card {
+    padding: 34px 22px 28px;
+  }
+
+  .price-val {
+    font-size: 30px;
+  }
+
+  .fan-left {
+    transform: translateX(45px) rotate(-13deg) scale(0.91);
+  }
+
+  .fan-center {
+    transform: translateY(-22px) scale(1.02);
+  }
+
+  .fan-right {
+    transform: translateX(-45px) rotate(13deg) scale(0.91);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   C. PC PORTABLES COMPACTS (1025px - 1200px, ex: 1366x768, 1280x800)
+   -------------------------------------------------------------------------- */
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .container {
+    max-width: 1040px;
+    padding: 0 24px;
+  }
+
+  .nav-links {
+    gap: 18px;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+  }
+
+  .hero-title {
+    font-size: 44px;
   }
 
   .hero-subtitle {
     font-size: 17px;
+  }
+
+  .iphone-fan-stage {
+    perspective: 1300px;
+    padding: 20px 0 50px;
+  }
+
+  .fan-left {
+    transform: translateX(25px) rotate(-10deg) scale(0.88);
+  }
+
+  .fan-center {
+    transform: translateY(-16px) scale(0.98);
+  }
+
+  .fan-right {
+    transform: translateX(-25px) rotate(10deg) scale(0.88);
+  }
+
+  .browser-dashboard-layout {
+    grid-template-columns: 200px 1fr;
+    gap: 18px;
   }
 
   .pricing-grid-4 {
@@ -2107,30 +2253,79 @@ h1, h2, h3, h4, h5, h6, .font-heading {
   }
 
   .cards-grid-3 {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   D. TOUTES TABLETTES EN MODE PAYSAGE (851px - 1024px, ex: iPad Pro, iPad Air)
+   -------------------------------------------------------------------------- */
+@media (min-width: 851px) and (max-width: 1024px) {
+  .container {
+    max-width: 920px;
+    padding: 0 24px;
   }
 
-  .argumentaire-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
+  .navbar {
+    padding: 12px 0;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(14, 11, 38, 0.98);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-gold);
+    padding: 24px 28px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    z-index: 200;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links a {
+    color: #F8FAFC;
+    font-size: 16px;
+    width: 100%;
+    padding: 6px 0;
+  }
+
+  .nav-actions {
+    display: none;
+  }
+
+  .hero-title {
+    font-size: clamp(36px, 4.5vw, 44px);
+  }
+
+  /* Affichage du sélecteur tactile d'écrans pour tablette */
+  .fan-device-tabs {
+    display: flex;
   }
 
   .iphone-fan-stage {
-    perspective: 1200px;
-    padding: 20px 0 40px;
+    display: flex;
+    justify-content: center;
+    perspective: none;
+    padding: 10px 0 30px;
   }
 
-  .fan-left {
-    transform: translateX(30px) rotate(-10deg) scale(0.88);
-  }
-
-  .fan-center {
-    transform: translateY(-15px) scale(0.98);
-  }
-
-  .fan-right {
-    transform: translateX(-30px) rotate(10deg) scale(0.88);
+  .fan-left, .fan-center, .fan-right {
+    transform: none !important;
+    margin: 0 !important;
   }
 
   .browser-dashboard-layout {
@@ -2154,13 +2349,46 @@ h1, h2, h3, h4, h5, h6, .font-heading {
     white-space: nowrap;
   }
 
+  .pricing-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+  }
+
+  .cards-grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
   .addons-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .build-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .build-grid .hero-cta-group {
+    justify-content: center;
+  }
+
+  .argumentaire-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
 }
 
-/* 4. TABLETTES PORTRAIT & PHABLETS GRAND FORMAT (641px - 834px) */
-@media (max-width: 834px) {
+/* --------------------------------------------------------------------------
+   E. TABLETTES PORTRAIT & PLIABLES DÉPLIÉS (641px - 850px, ex: iPad 768x1024, Galaxy Fold déplié)
+   -------------------------------------------------------------------------- */
+@media (min-width: 641px) and (max-width: 850px) {
+  .container {
+    max-width: 100%;
+    padding: 0 20px;
+  }
+
   .navbar {
     padding: 12px 0;
   }
@@ -2181,7 +2409,7 @@ h1, h2, h3, h4, h5, h6, .font-heading {
     padding: 24px 20px;
     flex-direction: column;
     align-items: flex-start;
-    gap: 16px;
+    gap: 14px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
     z-index: 200;
   }
@@ -2192,9 +2420,9 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 
   .nav-links a {
     color: #F8FAFC;
-    font-size: 17px;
+    font-size: 16px;
     width: 100%;
-    padding: 8px 0;
+    padding: 6px 0;
   }
 
   .nav-actions {
@@ -2202,38 +2430,34 @@ h1, h2, h3, h4, h5, h6, .font-heading {
   }
 
   .hero-section {
-    padding: 40px 0 70px;
+    padding: 40px 0 60px;
   }
 
   .hero-title {
-    font-size: clamp(32px, 6vw, 42px);
+    font-size: clamp(32px, 5.5vw, 40px);
     letter-spacing: -0.8px;
   }
 
-  .hero-cta-group {
-    flex-direction: column;
-    width: 100%;
-    gap: 12px;
+  .hero-subtitle {
+    font-size: 16px;
+    margin-bottom: 28px;
   }
 
-  .hero-cta-group .btn {
-    width: 100%;
+  /* Sélecteur tactile actif */
+  .fan-device-tabs {
+    display: flex;
   }
 
-  /* Vertical Fan Stack for Mobile & Tablets */
   .iphone-fan-stage {
-    flex-direction: column;
-    align-items: center;
-    gap: 36px;
+    display: flex;
+    justify-content: center;
     perspective: none;
-    padding: 10px 0 30px;
+    padding: 10px 0 25px;
   }
 
   .fan-left, .fan-center, .fan-right {
     transform: none !important;
     margin: 0 !important;
-    width: 100%;
-    max-width: 320px;
   }
 
   .iphone16-pro-frame {
@@ -2243,22 +2467,58 @@ h1, h2, h3, h4, h5, h6, .font-heading {
     margin: 0 auto;
   }
 
-  .cards-grid-3, .pricing-grid-4, .addons-grid, .trust-grid, .build-grid, .stats-grid, .yield-summary-cards {
-    grid-template-columns: 1fr;
+  .cards-grid-3 {
+    grid-template-columns: repeat(2, 1fr);
     gap: 16px;
   }
 
-  .pro-section {
-    padding: 70px 0;
+  .pricing-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
 
-  .pro-title {
-    font-size: clamp(30px, 5vw, 40px);
+  .addons-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .trust-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .build-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    text-align: center;
+  }
+
+  .build-grid .hero-cta-group {
+    justify-content: center;
+  }
+
+  .argumentaire-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .browser-dashboard-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .browser-sidebar-menu {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 8px;
+  }
+
+  .browser-sidebar-item {
+    white-space: nowrap;
   }
 
   .browser-metrics-row {
-    grid-template-columns: 1fr;
-    gap: 12px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
   }
 
   .order-summary-bar {
@@ -2290,20 +2550,52 @@ h1, h2, h3, h4, h5, h6, .font-heading {
   }
 }
 
-/* 5. SMARTPHONES TAILLE STANDARD (iPhone 13/14/15/16, Samsung Galaxy, Pixel) (481px - 640px) */
-@media (max-width: 640px) {
+/* --------------------------------------------------------------------------
+   F. GRANDS SMARTPHONES & PHABLETS (481px - 640px, ex: iPhone 16 Pro Max, S24 Ultra)
+   -------------------------------------------------------------------------- */
+@media (min-width: 481px) and (max-width: 640px) {
   .container {
-    padding: 0 16px;
+    padding: 0 18px;
   }
 
-  .tag-pill {
-    font-size: 11px;
-    padding: 5px 14px;
+  .navbar {
+    padding: 10px 0;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(14, 11, 38, 0.98);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-gold);
+    padding: 20px 16px;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 200;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-actions {
+    display: none;
+  }
+
+  .hero-section {
+    padding: 35px 0 55px;
   }
 
   .hero-title {
-    font-size: 28px;
-    line-height: 1.2;
+    font-size: clamp(28px, 6.5vw, 34px);
+    line-height: 1.18;
   }
 
   .hero-subtitle {
@@ -2311,56 +2603,156 @@ h1, h2, h3, h4, h5, h6, .font-heading {
     margin-bottom: 24px;
   }
 
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .hero-cta-group .btn {
+    width: 100%;
+  }
+
+  .fan-device-tabs {
+    display: flex;
+    max-width: 100%;
+  }
+
+  .iphone-fan-stage {
+    display: flex;
+    justify-content: center;
+    perspective: none;
+    padding: 5px 0 25px;
+  }
+
+  .fan-left, .fan-center, .fan-right {
+    transform: none !important;
+    margin: 0 !important;
+  }
+
   .iphone16-pro-frame {
-    max-width: 295px;
-    height: 560px;
+    width: 100%;
+    max-width: 320px;
+    height: 590px;
     border-radius: 46px;
-    padding: 8px;
+    padding: 9px;
+    margin: 0 auto;
   }
 
-  .iphone16-inner-screen {
-    border-radius: 38px;
-  }
-
-  .ios-status-bar {
-    padding: 10px 14px 4px;
-    font-size: 10px;
+  .dynamic-island-pro {
+    width: 82px;
+    height: 22px;
+    top: 10px;
   }
 
   .wa-chat-canvas {
-    padding: 10px 8px 18px;
+    padding: 12px 9px 18px;
+    gap: 8px;
   }
 
   .chat-bubble {
-    max-width: 92%;
-    font-size: 10.5px;
-    padding: 8px 10px;
+    max-width: 90%;
+    font-size: 11px;
+    padding: 8px 11px;
+  }
+
+  .argumentaire-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 
   .stat-number {
-    font-size: 40px;
+    font-size: 44px;
+  }
+
+  .browser-canvas {
+    padding: 16px;
+  }
+
+  .browser-dashboard-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .browser-sidebar-menu {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 6px;
+  }
+
+  .browser-sidebar-item {
+    font-size: 12px;
+    padding: 8px 10px;
+    white-space: nowrap;
+  }
+
+  .browser-metrics-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .cards-grid-3 {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .build-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    text-align: center;
+  }
+
+  .build-grid .hero-cta-group {
+    justify-content: center;
+  }
+
+  .cube-item {
+    width: 250px;
+    height: 72px;
+    font-size: 15px;
+    transform: rotateX(15deg) rotateZ(-4deg);
+  }
+
+  .trust-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .chart-card-wrapper {
+    padding: 24px 18px;
   }
 
   .simulator-panel {
-    padding: 20px 16px;
+    padding: 22px 18px;
+  }
+
+  .simulator-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .preset-chips-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
   }
 
   .preset-chips {
     flex-wrap: wrap;
-    justify-content: center;
   }
 
-  .preset-chip {
-    padding: 6px 12px;
-    font-size: 12px;
-  }
-
-  .summary-val {
-    font-size: 28px;
+  .yield-summary-cards {
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
 
   .pricing-header-box h2 {
-    font-size: 28px !important;
+    font-size: 30px !important;
   }
 
   .billing-toggle-wrapper {
@@ -2376,81 +2768,699 @@ h1, h2, h3, h4, h5, h6, .font-heading {
     padding: 10px 14px;
   }
 
+  .pricing-grid-4 {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .addons-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .order-summary-bar {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 16px;
+    gap: 16px;
+  }
+
+  .order-summary-bar div {
+    text-align: center !important;
+  }
+
+  .downsell-box {
+    flex-direction: column;
+    text-align: center;
+    padding: 22px 16px;
+    gap: 16px;
+  }
+
+  .downsell-box .btn {
+    width: 100%;
+  }
+
   .cta-final-title {
-    font-size: 28px;
+    font-size: 32px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .footer-content div {
+    text-align: center !important;
   }
 }
 
-/* 6. COMPACT SMARTPHONES & PETITS ÉCRANS MOBILES (320px - 480px) */
-@media (max-width: 480px) {
+/* --------------------------------------------------------------------------
+   G. SMARTPHONES STANDARDS (376px - 480px, ex: iPhone 13/14/15/16, Galaxy S, Pixel)
+   -------------------------------------------------------------------------- */
+@media (min-width: 376px) and (max-width: 480px) {
   .container {
-    padding: 0 14px;
+    padding: 0 16px;
+  }
+
+  .navbar {
+    padding: 10px 0;
   }
 
   .nav-brand span {
-    font-size: 22px;
+    font-size: 23px;
   }
 
   .nav-brand img {
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(14, 11, 38, 0.98);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-gold);
+    padding: 20px 16px;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 200;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-actions {
+    display: none;
+  }
+
+  .hero-section {
+    padding: 30px 0 50px;
+  }
+
+  .tag-pill {
+    font-size: 11.5px;
+    padding: 5px 14px;
   }
 
   .hero-title {
-    font-size: 25px;
+    font-size: 26px;
+    line-height: 1.2;
+    margin: 16px 0 14px;
+  }
+
+  .hero-subtitle {
+    font-size: 14.5px;
+    margin-bottom: 22px;
+    line-height: 1.5;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .hero-cta-group .btn {
+    width: 100%;
+    padding: 14px 22px;
+    font-size: 14px;
+  }
+
+  .section-title-large {
+    font-size: 28px !important;
+  }
+
+  .fan-device-tabs {
+    display: flex;
+    max-width: 100%;
+    gap: 6px;
+    padding: 4px;
+  }
+
+  .fan-tab-btn {
+    font-size: 12px;
+    padding: 7px 12px;
+  }
+
+  .iphone-fan-stage {
+    display: flex;
+    justify-content: center;
+    perspective: none;
+    padding: 5px 0 20px;
+  }
+
+  .fan-left, .fan-center, .fan-right {
+    transform: none !important;
+    margin: 0 !important;
   }
 
   .iphone16-pro-frame {
-    max-width: 275px;
-    height: 520px;
-    border-radius: 40px;
+    width: 100%;
+    max-width: 300px;
+    height: 560px;
+    border-radius: 44px;
+    padding: 8px;
+    margin: 0 auto;
   }
 
   .dynamic-island-pro {
-    width: 76px;
+    width: 78px;
     height: 20px;
-    top: 8px;
+    top: 9px;
+  }
+
+  .wa-chat-canvas {
+    padding: 10px 8px 16px;
+    gap: 7px;
+  }
+
+  .chat-bubble {
+    max-width: 92%;
+    font-size: 10.5px;
+    padding: 7px 10px;
+  }
+
+  .fan-screen-footer {
+    padding: 8px 12px;
+    font-size: 10px;
+  }
+
+  .argumentaire-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .argumentaire-card {
-    padding: 22px 18px;
+    padding: 24px 18px;
   }
 
   .arg-title {
-    font-size: 18px;
+    font-size: 19px;
+  }
+
+  .arg-list li {
+    font-size: 13.5px;
+    gap: 10px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .stat-number {
+    font-size: 40px;
+  }
+
+  .pro-section {
+    padding: 60px 0;
+  }
+
+  .pro-title {
+    font-size: 28px;
+  }
+
+  .pro-subtitle {
+    font-size: 15px;
+  }
+
+  .browser-canvas {
+    padding: 14px 10px;
+  }
+
+  .browser-dashboard-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .browser-sidebar-menu {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 6px;
+  }
+
+  .browser-sidebar-item {
+    font-size: 11.5px;
+    padding: 6px 10px;
+    white-space: nowrap;
+  }
+
+  .browser-metrics-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .browser-metric-card {
+    padding: 12px;
+  }
+
+  .browser-metric-val {
+    font-size: 19px;
+  }
+
+  .cards-grid-3 {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .feature-card-dark {
+    padding: 26px 20px;
+  }
+
+  .build-section {
+    padding: 60px 0;
+  }
+
+  .build-title {
+    font-size: 28px;
+  }
+
+  .build-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    text-align: center;
+  }
+
+  .build-grid .hero-cta-group {
+    justify-content: center;
+  }
+
+  .cube-item {
+    width: 240px;
+    height: 68px;
+    font-size: 14px;
+    transform: rotateX(12deg) rotateZ(-3deg);
+  }
+
+  .usecases-section {
+    padding: 60px 0;
+  }
+
+  .usecase-card {
+    padding: 26px 20px;
+  }
+
+  .trust-section {
+    padding: 60px 0;
+  }
+
+  .trust-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .trust-card {
+    padding: 20px 16px;
+  }
+
+  .chart-section {
+    padding: 60px 0;
+  }
+
+  .chart-card-wrapper {
+    padding: 20px 14px;
+  }
+
+  .simulator-panel {
+    padding: 18px 14px;
+  }
+
+  .simulator-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .simulator-label {
+    font-size: 14px;
+  }
+
+  .simulator-badge {
+    font-size: 16px;
+    padding: 5px 14px;
+  }
+
+  .preset-chips-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .preset-chips {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .preset-chip {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .yield-summary-cards {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .summary-card {
+    padding: 18px 14px;
+  }
+
+  .summary-val {
+    font-size: 25px;
+  }
+
+  .pricing-section {
+    padding: 60px 0;
+  }
+
+  .pricing-header-box h2 {
+    font-size: 27px !important;
+  }
+
+  .billing-toggle-wrapper {
+    flex-direction: column;
+    width: 100%;
+    padding: 5px;
+    gap: 6px;
+  }
+
+  .billing-toggle-btn {
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+    padding: 10px 14px;
+  }
+
+  .pricing-grid-4 {
+    grid-template-columns: 1fr;
+    gap: 18px;
   }
 
   .pricing-card {
-    padding: 24px 18px;
+    padding: 28px 20px 24px;
+  }
+
+  .price-val {
+    font-size: 28px;
+  }
+
+  .addons-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
 
   .addon-card {
     padding: 16px 14px;
   }
 
+  .order-summary-bar {
+    flex-direction: column;
+    text-align: center;
+    padding: 18px 14px;
+    gap: 14px;
+  }
+
+  .order-summary-bar div {
+    text-align: center !important;
+  }
+
   .summary-total-price {
     font-size: 26px;
   }
 
+  .downsell-box {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 16px;
+    gap: 14px;
+  }
+
   .downsell-title {
-    font-size: 17px;
+    font-size: 18px;
+  }
+
+  .downsell-box .btn {
+    width: 100%;
+  }
+
+  .faq-section {
+    padding: 60px 0;
+  }
+
+  .faq-question {
+    font-size: 15px;
+    padding: 18px 20px;
+  }
+
+  .faq-item.active .faq-answer {
+    padding: 12px 20px 20px;
+    font-size: 13.5px;
+  }
+
+  .cta-final-section {
+    padding: 60px 0;
+  }
+
+  .cta-final-title {
+    font-size: 27px;
+  }
+
+  .cta-final-card .btn {
+    width: 100%;
+    font-size: 16px;
+    padding: 16px 24px;
+  }
+
+  .footer {
+    padding: 40px 0 24px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .footer-content div {
+    text-align: center !important;
   }
 }
 
-/* 7. ÉCRANS ULTRA-COMPACTS ET MOBILES PLIABLES FERMÉS (< 320px) */
-@media (max-width: 320px) {
+/* --------------------------------------------------------------------------
+   H. SMARTPHONES COMPACTS (341px - 375px, ex: iPhone SE, iPhone 12/13 mini)
+   -------------------------------------------------------------------------- */
+@media (min-width: 341px) and (max-width: 375px) {
+  .container {
+    padding: 0 12px;
+  }
+
+  .nav-brand span {
+    font-size: 21px;
+  }
+
+  .nav-brand img {
+    width: 28px;
+    height: 28px;
+  }
+
   .hero-title {
+    font-size: 23px;
+    line-height: 1.22;
+  }
+
+  .hero-subtitle {
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+
+  .tag-pill {
+    font-size: 10px;
+    padding: 4px 12px;
+  }
+
+  .fan-device-tabs {
+    display: flex;
+    max-width: 100%;
+    gap: 4px;
+    padding: 3px;
+  }
+
+  .fan-tab-btn {
+    font-size: 11px;
+    padding: 6px 9px;
+    gap: 4px;
+  }
+
+  .iphone16-pro-frame {
+    max-width: 275px;
+    height: 520px;
+    border-radius: 40px;
+    padding: 7px;
+  }
+
+  .dynamic-island-pro {
+    width: 72px;
+    height: 18px;
+    top: 7px;
+  }
+
+  .wa-chat-canvas {
+    padding: 8px 6px 14px;
+    gap: 6px;
+  }
+
+  .chat-bubble {
+    font-size: 10px;
+    padding: 6px 8px;
+    max-width: 94%;
+  }
+
+  .pricing-card {
+    padding: 24px 16px 20px;
+  }
+
+  .price-val {
+    font-size: 25px;
+  }
+
+  .stat-number {
+    font-size: 34px;
+  }
+
+  .simulator-panel {
+    padding: 16px 12px;
+  }
+
+  .summary-val {
     font-size: 22px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   I. MOBILES PLIABLES FERMÉS & ÉCRANS ULTRA-COMPACTS (<= 340px, ex: Galaxy Fold fermé)
+   -------------------------------------------------------------------------- */
+@media (max-width: 340px) {
+  .container {
+    padding: 0 10px;
+  }
+
+  .nav-brand span {
+    font-size: 19px;
+  }
+
+  .hero-title {
+    font-size: 21px;
+    letter-spacing: -0.4px;
+  }
+
+  .hero-subtitle {
+    font-size: 13px;
   }
 
   .btn {
     font-size: 13px;
-    padding: 12px 18px;
+    padding: 12px 16px;
+  }
+
+  .fan-device-tabs {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 16px;
+    padding: 6px;
+  }
+
+  .fan-tab-btn {
+    width: 100%;
+    justify-content: center;
+    font-size: 11px;
+    padding: 7px 10px;
   }
 
   .iphone16-pro-frame {
     max-width: 250px;
     height: 480px;
+    border-radius: 36px;
+    padding: 6px;
+  }
+
+  .dynamic-island-pro {
+    width: 66px;
+    height: 16px;
+    top: 6px;
+  }
+
+  .chat-bubble {
+    font-size: 9.5px;
+    padding: 5px 7px;
+  }
+
+  .pricing-card {
+    padding: 20px 12px;
+    border-radius: 18px;
+  }
+
+  .price-val {
+    font-size: 23px;
+  }
+
+  .cube-item {
+    width: 210px;
+    height: 60px;
+    font-size: 12.5px;
+    transform: none;
   }
 }
+
+/* --------------------------------------------------------------------------
+   CLASSES DYNAMIQUES DU SÉLECTEUR TACTILE FAN SHOWCASE
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .iphone-fan-card.fan-hidden {
+    display: none !important;
+  }
+
+  .iphone-fan-card.fan-visible {
+    display: flex !important;
+    animation: fanFadeScale 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes fanFadeScale {
+    from {
+      opacity: 0;
+      transform: scale(0.95) translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+}
+
+@media (min-width: 1025px) {
+  .fan-device-tabs {
+    display: none !important;
+  }
+
+  .iphone-fan-card.fan-hidden {
+    display: flex !important;
+  }
+
+  .iphone-fan-card.fan-visible {
+    display: flex !important;
+    animation: none !important;
+  }
+}
+
 

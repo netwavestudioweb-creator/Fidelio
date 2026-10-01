@@ -278,6 +278,33 @@ window.setBillingCycle = function(isAnnual) {
   updatePricingUI();
 };
 
+window.selectFanTab = function(index) {
+  const cards = document.querySelectorAll('.iphone-fan-card');
+  const tabs = document.querySelectorAll('.fan-tab-btn');
+  
+  tabs.forEach((tab, i) => {
+    if (i === index) tab.classList.add('active');
+    else tab.classList.remove('active');
+  });
+
+  if (index === 3) {
+    cards.forEach(c => {
+      c.classList.remove('fan-hidden');
+      c.classList.add('fan-visible');
+    });
+  } else {
+    cards.forEach((c, i) => {
+      if (i === index) {
+        c.classList.remove('fan-hidden');
+        c.classList.add('fan-visible');
+      } else {
+        c.classList.add('fan-hidden');
+        c.classList.remove('fan-visible');
+      }
+    });
+  }
+};
+
 window.selectPack = function(packId) {
   pricingState.selectedPack = packId;
   updatePricingUI();
@@ -491,6 +518,12 @@ function renderApp() {
           <li><a href="#calculator">Calculateur</a></li>
           <li><a href="#pricing">Tarifs</a></li>
           <li><a href="#faq">FAQ</a></li>
+          <li class="nav-mobile-cta">
+            <a href="${getWhatsAppUrl("Bonjour Fidelio, je souhaite réserver mon audit gratuit de 20 minutes pour mon entreprise.")}" target="_blank" class="btn btn-wa" style="width:100%;margin-top:10px;">
+              <span class="icon-box">${icons.phone}</span>
+              <span>Réserver l'audit</span>
+            </a>
+          </li>
         </ul>
         <div class="nav-actions">
           <a href="${getWhatsAppUrl("Bonjour Fidelio, je souhaite réserver mon audit gratuit de 20 minutes pour mon entreprise.")}" target="_blank" class="btn btn-wa">
@@ -523,7 +556,7 @@ function renderApp() {
 
         <!-- LE PROBLÈME ET LA SOLUTION (3 IPHONE 16 PRO MAX FAN SHOWCASE) -->
         <div class="problem-iphone-section" id="problem">
-          <div style="text-align:center;max-width:820px;margin:0 auto 45px;">
+          <div style="text-align:center;max-width:820px;margin:0 auto 30px;">
             <div class="tag-pill tag-pill-glow">
               <span class="icon-box" style="color:var(--gold-bright);">${icons.zap}</span>
               <span>COMPARATIF DE PERFORMANCE 24/7</span>
@@ -536,11 +569,31 @@ function renderApp() {
             </p>
           </div>
 
+          <!-- SÉLECTEUR TACTILE MULTI-ÉCRANS (POUR MOBILES & TABLETTES) -->
+          <div class="fan-device-tabs" id="fan-device-tabs">
+            <button class="fan-tab-btn" data-fan-index="0" onclick="selectFanTab(0)">
+              <span class="icon-box">${icons.xCircle}</span>
+              <span>1. Sans Fidelio</span>
+            </button>
+            <button class="fan-tab-btn active" data-fan-index="1" onclick="selectFanTab(1)">
+              <span class="icon-box">${icons.zap}</span>
+              <span>2. Réponse 24/7</span>
+            </button>
+            <button class="fan-tab-btn" data-fan-index="2" onclick="selectFanTab(2)">
+              <span class="icon-box">${icons.refreshCw}</span>
+              <span>3. Relances</span>
+            </button>
+            <button class="fan-tab-btn fan-tab-all" data-fan-index="3" onclick="selectFanTab(3)">
+              <span class="icon-box">${icons.layers}</span>
+              <span>Tous (3)</span>
+            </button>
+          </div>
+
           <!-- 3 IPHONE 16 PRO MAX FAN SHOWCASE -->
           <div class="iphone-fan-stage">
             
             <!-- IPHONE 1: LE PROBLÈME (SANS FIDELIO) -->
-            <div class="iphone-fan-card fan-left">
+            <div class="iphone-fan-card fan-left" data-fan-card="0">
               <div class="fan-badge badge-danger">
                 <span class="icon-box">${icons.xCircle}</span>
                 <span>1. LE PROBLÈME (Sans Fidelio)</span>
@@ -606,7 +659,7 @@ function renderApp() {
             </div>
 
             <!-- IPHONE 2: NOTRE SOLUTION (RÉPONSE INSTANTANÉE 24/7) -->
-            <div class="iphone-fan-card fan-center">
+            <div class="iphone-fan-card fan-center" data-fan-card="1">
               <div class="fan-badge badge-success">
                 <span class="icon-box">${icons.zap}</span>
                 <span>2. NOTRE SOLUTION (Réponse 24/7)</span>
@@ -675,7 +728,7 @@ function renderApp() {
             </div>
 
             <!-- IPHONE 3: L'AUTOMATION & FIDÉLITÉ (RELANCES AUTO) -->
-            <div class="iphone-fan-card fan-right">
+            <div class="iphone-fan-card fan-right" data-fan-card="2">
               <div class="fan-badge badge-gold">
                 <span class="icon-box">${icons.refreshCw}</span>
                 <span>3. RELANCES & FIDÉLISATION</span>
@@ -1319,6 +1372,9 @@ function renderApp() {
   initChart();
   updatePricingUI();
   attachEventListeners();
+  if (window.innerWidth <= 1080) {
+    window.selectFanTab(1);
+  }
 }
 
 function renderCockpitFeed(filterKey) {
